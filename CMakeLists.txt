@@ -44,10 +44,8 @@ add_library(sha2_ref ${SHA2_SRCS})
 add_subdirectory(lib/pybind11)
 
 # Kyber 512
-#add_library(kyber512_ref ${KYBER_FIPS202_SRCS})
-#add_library(kyber512_90s_ref ${KYBER_NINETIES_SRCS})
-pybind11_add_module(pykyber ${KYBER_FIPS202_SRCS} "${SOURCE_DIR}/bindings.cpp")
-pybind11_add_module(pykyber_90s ${KYBER_NINETIES_SRCS} "${SOURCE_DIR}/bindings_90s.cpp")
+pybind11_add_module(pykyber ${KYBER_FIPS202_SRCS} "${SOURCE_DIR}/base58.c" "${SOURCE_DIR}/bindings.cpp")
+pybind11_add_module(pykyber_90s ${KYBER_NINETIES_SRCS} ${AES256CTR_SRCS} ${SHA2_SRCS} "${SOURCE_DIR}/base58.c" "${SOURCE_DIR}/bindings_90s.cpp")
 target_compile_definitions(pykyber PUBLIC KYBER_K=2)
 target_compile_definitions(pykyber_90s PUBLIC KYBER_K=2 KYBER_90S)
 target_link_libraries(pykyber INTERFACE fips202_ref)
