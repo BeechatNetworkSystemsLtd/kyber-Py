@@ -43,10 +43,17 @@ pk = f.readline()
 f.close()
 pykyber.pqcrystals_kyber512_ref_enc("", pk)
 bob_skey = pykyber.pqcrystals_get_skey()
+chipertext = pykyber.pqcrystals_get_ct()
+f = open('chipher.txt', 'w')
+f.write(chipertext)
+f.close()
 
 # Step 3:
 # Alice
-pykyber.pqcrystals_kyber512_ref_dec(pykyber.pqcrystals_get_ct(), alice_sk)
+f = open('chipher.txt', 'r')
+chipertext = f.readline()
+f.close()
+pykyber.pqcrystals_kyber512_ref_dec(chipertext, alice_sk)
 alice_skey = pykyber.pqcrystals_get_skey()
 
 # Step 4:

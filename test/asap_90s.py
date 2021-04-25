@@ -43,10 +43,17 @@ pk = f.readline()
 f.close()
 pykyber_90s.pqcrystals_kyber512_90s_ref_enc("", pk)
 bob_skey = pykyber_90s.pqcrystals_get_skey()
+chipertext = pykyber_90s.pqcrystals_get_ct()
+f = open('chipher.txt', 'w')
+f.write(chipertext)
+f.close()
 
 # Step 3:
 # Alice
-pykyber_90s.pqcrystals_kyber512_90s_ref_dec(pykyber_90s.pqcrystals_get_ct(), alice_sk)
+f = open('chipher.txt', 'r')
+chipertext = f.readline()
+f.close()
+pykyber_90s.pqcrystals_kyber512_90s_ref_dec(chipertext, alice_sk)
 alice_skey = pykyber_90s.pqcrystals_get_skey()
 
 # Step 4:
