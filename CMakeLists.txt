@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
 project(pykyber C CXX ASM)
-set(CMAKE_SYSTEM_NAME Linux)
 
 # Tell cmake that headers are in alse in source_dir
 set(SOURCE_DIR "src/ref")
@@ -46,6 +45,7 @@ add_subdirectory(lib/pybind11)
 # Kyber 512
 pybind11_add_module(pykyber ${KYBER_FIPS202_SRCS} "${SOURCE_DIR}/base58.c" "${SOURCE_DIR}/bindings.cpp")
 pybind11_add_module(pykyber_90s ${KYBER_NINETIES_SRCS} ${AES256CTR_SRCS} ${SHA2_SRCS} "${SOURCE_DIR}/base58.c" "${SOURCE_DIR}/bindings_90s.cpp")
+
 target_compile_definitions(pykyber PUBLIC KYBER_K=2)
 target_compile_definitions(pykyber_90s PUBLIC KYBER_K=2 KYBER_90S)
 target_link_libraries(pykyber INTERFACE fips202_ref)

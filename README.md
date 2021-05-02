@@ -4,7 +4,17 @@ This repository contains the reference implementation of the [Kyber](https://www
 
 ## Build
 
-For make a Python wrapper you should use cmake:
+If you use Windows you should install MSYS2 and make several commands:
+```sh
+pacman -S --needed base-devel mingw-w64-i686-toolchain
+pacman -S mingw-w64-x86_64-python3
+
+mkdir build
+cd build
+cmake .. -G "MSYS Makefiles"
+make
+```
+For make a Python wrapper in Linux you should use cmake:
 ```sh
 mkdir build
 cd build
@@ -35,8 +45,4 @@ print(b)
 ```
 
 The necessary shared libraries are placed in `/build` directory. It is not necessary to use all classes (with `_90s` and without). Just choose what you want to use.
-
-
-
-
 
