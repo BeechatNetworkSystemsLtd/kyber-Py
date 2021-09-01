@@ -7,6 +7,7 @@ This repository contains the reference implementation of the [Kyber](https://www
 If you use Windows you should install MSYS2 and make several commands:
 ```sh
 pacman -S --needed base-devel mingw-w64-i686-toolchain
+pacman -S mingw-w64-i686-cmake
 pacman -S mingw-w64-x86_64-python3
 
 mkdir build
